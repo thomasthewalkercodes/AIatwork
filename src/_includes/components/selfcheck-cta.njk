@@ -1,0 +1,13 @@
+{#- Call-to-action band pointing to the self-check. Used at the end of theme pages. -#}
+<section class="cta-band" aria-labelledby="cta-selfcheck-title">
+  <div class="container">
+    <div class="cta-band__inner">
+      <div>
+        <p class="kicker">{{ home.selfcheck.kicker }}</p>
+        <h2 id="cta-selfcheck-title">{{ home.selfcheck.title }}</h2>
+        <p>{{ home.selfcheck.text }}</p>
+      </div>
+      <a class="button button--primary" href="/self-check/">{{ home.selfcheck.cta }}</a>
+    </div>
+  </div>
+</section>

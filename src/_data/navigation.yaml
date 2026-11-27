@@ -1,0 +1,43 @@
+# ---------------------------------------------------------------------------
+# Site navigation. Edit here – header and footer update everywhere.
+# ---------------------------------------------------------------------------
+
+# Main menu (header)
+main:
+  - title: "Findings"
+    url: "/findings/"
+  - title: "Self-check"
+    url: "/self-check/"
+  - title: "Report"
+    url: "/report/"
+  - title: "About"
+    url: "/about/"
+  - title: "Contact"
+    url: "/contact/"
+
+# Footer columns
+footer:
+  - heading: "Explore"
+    links:
+      - title: "All findings"
+        url: "/findings/"
+      - title: "Self-check"
+        url: "/self-check/"
+      - title: "Download the report"
+        url: "/report/"
+  - heading: "Project"
+    links:
+      - title: "About the study"
+        url: "/about/"
+      - title: "Contact & media"
+        url: "/contact/"
+      - title: "Newsletter"
+        url: "/newsletter/"
+  - heading: "Legal"
+    links:
+      - title: "Privacy"
+        url: "/privacy/"
+      - title: "Imprint"
+        url: "/imprint/"
+      - title: "Accessibility"
+        url: "/accessibility/"

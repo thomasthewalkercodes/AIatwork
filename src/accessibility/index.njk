@@ -1,0 +1,24 @@
+---
+layout: layouts/page.njk
+title: Accessibility
+kicker: Legal
+lead: We want everyone to be able to use this website, regardless of ability or device.
+description: Accessibility statement of the AI & People at Work website.
+---
+
+<h2>What we do</h2>
+<ul>
+  <li>Text and buttons meet the WCAG 2.2 AA contrast requirements.</li>
+  <li>All pages can be used with a keyboard only. A "Skip to content" link appears with the first Tab press.</li>
+  <li>Clear page structure (headings, landmarks) so screen readers can navigate easily.</li>
+  <li>Animations are reduced if you have turned on "reduce motion" on your device.</li>
+  <li>Text can be enlarged up to 200 % without breaking the layout.</li>
+</ul>
+
+{% todo "Accessibility features" %}
+- **Charts:** every chart gets a short text summary and a data table; never rely on colour alone (use patterns, labels, shapes); colour-blind-safe palettes.
+- **Colour-blind / high-contrast mode:** optional switch in the header that swaps the chart and accent colours. The choice is kept only for the current visit (no cookies).
+- **Images:** every image has a meaningful description (`alt` text); decorative images are hidden from screen readers.
+- **Testing:** check with a screen reader (NVDA / VoiceOver), keyboard only, and an automated checker (e.g. axe) before launch.
+- Contact address for reporting accessibility problems.
+{% endtodo %}

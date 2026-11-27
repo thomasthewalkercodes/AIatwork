@@ -1,0 +1,231 @@
+# ---------------------------------------------------------------------------
+# Self-check ("How do you compare?") – question bank
+#
+# All recommended items from the website brief are listed. Set `enabled: true`
+# for the ones that should appear in the self-check. Current selection: the
+# 4 questions below (keep it short – about a minute).
+#
+#   code:      item code in the survey data set
+#   construct: short label (shown on the result card)
+#   text:      question wording as shown to visitors
+#   scale:     which answer scale to use (defined under `scales` below)
+#   usersOnly: true = only asked if the visitor uses AI at work (as in the survey)
+#   card:      sentence on the result card. {p} is replaced by a percentage.
+#              more = the visitor is above most people, less = below most people
+#   link:      finding to read more about it (+ linkLabel = link text)
+#   benchmark: comparison values – share of people (in %) who chose each
+#              answer, in the same order as the answer scale.
+#              Items without a benchmark are asked but not shown on the card.
+# ---------------------------------------------------------------------------
+
+# !!! DEMO MODE !!!
+# All benchmark numbers below are INVENTED placeholder values (round numbers)
+# so the result card can be tested. They are NOT results from the survey or
+# the report. While `demo: true`, the card and the result page say
+# "Demo data". TODO: replace with the weighted survey results, then set
+# demo: false.
+demo: true
+
+intro: >-
+  Answer four quick questions about how you work with AI and see how your
+  experience compares with employees across Switzerland. Your answers stay in
+  your browser – nothing is sent or stored.
+
+# How the result card picks your "AI-at-work type" (see `personas` below)
+result:
+  usageItem: "AI03_01"    # how often you use AI. First answer = "I don't use AI" → usersOnly questions are skipped
+  outlookItem: "GA01_03"  # benefits vs. risks. "Rather agree" or higher = upbeat, otherwise wary
+
+# Asked first: used to compare visitors with people in a similar type of job.
+# Switched off for now to keep the self-check at 4 questions.
+profile:
+  - code: "DG13"
+    construct: "Type of work"
+    text: "Which best describes your job?"
+    scale: "jobtype"
+    enabled: false
+
+items:
+  - code: "AI03_01"
+    construct: "AI use"
+    text: "How often do you use AI at work?"   # TODO: confirm exact wording of AI03_01
+    scale: "frequency"
+    usersOnly: false
+    enabled: true
+    card:
+      more: "More often than {p} of employees"
+      less: "Less often than {p} of employees"
+    link: "/findings/ai-use/#ai-in-everyday-work"
+    linkLabel: "How often people use AI at work"
+    benchmark:                       # DEMO – invented numbers
+      distribution: [40, 10, 10, 15, 15, 10]
+
+  - code: "BP01_02"
+    construct: "Quality of work"
+    text: "Since I started using AI, the quality of my work has …"
+    scale: "change"
+    usersOnly: true
+    enabled: false
+    benchmark: null
+
+  - code: "BP01_06"
+    construct: "Interactions with colleagues"
+    text: "Since I started using AI, the quality of my interactions with colleagues has …"
+    scale: "change"
+    usersOnly: true
+    enabled: false
+    benchmark: null
+
+  - code: "CP02_02"
+    construct: "Empowerment"
+    text: "AI has allowed me to work on tasks that were previously beyond my skill level."
+    scale: "agree"
+    usersOnly: true
+    enabled: false
+    benchmark: null
+
+  - code: "CP03_01"
+    construct: "Dependence"
+    text: "I am concerned that I am becoming too dependent on AI to do my work."
+    scale: "agree"
+    usersOnly: true
+    enabled: false
+    benchmark: null
+
+  - code: "GA01_03"
+    construct: "Benefits vs. risks"
+    text: "The benefits of AI at work outweigh the risks."
+    scale: "agree"
+    usersOnly: false
+    enabled: true
+    card:
+      more: "More optimistic than {p} of employees"
+      less: "More cautious than {p} of employees"
+    link: "/findings/society/#different-verdicts"
+    linkLabel: "How users and non-users judge AI"
+    benchmark:                       # DEMO – invented numbers
+      distribution: [5, 10, 20, 35, 20, 10]
+
+  - code: "GA02_03"
+    construct: "Where AI is heading"
+    text: "I am concerned about where AI development is heading."
+    scale: "agree"
+    usersOnly: false
+    enabled: false
+    benchmark: null
+
+  - code: "JS01_01"
+    construct: "Job security"
+    text: "I am worried that AI could make my current job redundant."
+    scale: "agree"
+    usersOnly: false
+    enabled: true
+    card:
+      more: "More worried than {p} of employees"
+      less: "More relaxed than {p} of employees"
+    link: "/findings/personal/#which-sectors-feel-most-threatened"
+    linkLabel: "Which sectors feel most threatened"
+    benchmark:                       # DEMO – invented numbers
+      distribution: [20, 30, 20, 15, 10, 5]
+
+  - code: "ME02_02"
+    construct: "Professional identity"
+    text: "I feel that AI is redefining what it means to be good at my job."
+    scale: "agree"
+    usersOnly: true
+    enabled: false
+    benchmark: null
+
+  - code: "PR02_02"
+    construct: "Expectations"
+    text: "My manager or clients expect more output from me because I have access to AI tools."
+    scale: "agree"
+    usersOnly: true
+    enabled: false
+    benchmark: null
+
+  - code: "SL03_03"
+    construct: "Team norms"
+    text: "I am often unsure whether my colleagues would consider my use of AI appropriate."
+    scale: "agree"
+    usersOnly: true
+    enabled: false
+    benchmark: null
+
+  - code: "TR01_01"
+    construct: "Openness"
+    text: "I openly share when I have used AI to produce work."
+    scale: "agree"
+    usersOnly: true
+    enabled: true
+    card:
+      more: "More open than {p} of AI users"
+      less: "More discreet than {p} of AI users"
+    link: "/findings/colleagues/#hide-and-seek"
+    linkLabel: "Hide and seek: how open people are about AI"
+    benchmark:                       # DEMO – invented numbers
+      distribution: [5, 10, 15, 25, 25, 20]
+
+  - code: "TR01_02"
+    construct: "Beliefs about colleagues"
+    text: "I believe most of my colleagues use AI more than they publicly admit."
+    scale: "agree"
+    usersOnly: true
+    enabled: false
+    benchmark: null
+
+# The visitor's "AI-at-work type" on the result card.
+#   use:     none (doesn't use AI) · some (up to about once a week) · lots (several times a week or daily)
+#   outlook: upbeat (benefits outweigh risks) · wary (not sure, or risks outweigh)
+personas:
+  lots-upbeat:
+    name: "The Trailblazer"
+    text: "AI is part of your everyday work – and you see more upside than risk."
+  lots-wary:
+    name: "The Clear-eyed Pro"
+    text: "You use AI a lot, and you keep a critical eye on it."
+  some-upbeat:
+    name: "The Explorer"
+    text: "You're trying AI out – and you like what you see so far."
+  some-wary:
+    name: "The Careful Tester"
+    text: "You use AI now and then, and weigh the pros and cons."
+  none-upbeat:
+    name: "The Curious Onlooker"
+    text: "You don't use AI at work yet, but you see its potential."
+  none-wary:
+    name: "The Thoughtful Sceptic"
+    text: "You keep your distance from AI at work – for now."
+
+# Answer scales (wording as in the questionnaire)
+scales:
+  agree:
+    - "Strongly disagree"
+    - "Disagree"
+    - "Rather disagree"
+    - "Rather agree"
+    - "Agree"
+    - "Strongly agree"
+  change:
+    - "Decreased considerably"
+    - "Decreased somewhat"
+    - "Not changed"
+    - "Increased somewhat"
+    - "Increased considerably"
+  frequency:                         # TODO: check against questionnaire
+    - "I don't use AI at work"
+    - "Less than once a month"
+    - "About once a month"
+    - "About once a week"
+    - "Several times a week"
+    - "Daily"
+  jobtype:
+    - "Mostly office or knowledge-based work"
+    - "A mix of physical/manual and office/knowledge-based tasks"
+    - "Mostly physical or manual work"
+
+# Short labels for the two ends of each scale (used on the result card)
+scaleEnds:
+  agree: ["Disagree", "Agree"]
+  change: ["Decreased", "Increased"]
+  frequency: ["Never", "Daily"]

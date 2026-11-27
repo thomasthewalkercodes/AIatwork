@@ -1,0 +1,309 @@
+/* ==========================================================================
+   Theme C – "Warm"
+   Friendly, approachable, self-check first. Rounded shapes, coral red, cream.
+   Typeface: Atkinson Hyperlegible Next (designed for low-vision readers).
+   1. Tokens   2. Header/footer tweaks   3. Homepage (.wm-*)   4. Inner pages
+   ========================================================================== */
+
+/* 1. Tokens -------------------------------------------------------------- */
+.theme-warm {
+  --c-bg: #fff7f0;
+  --c-surface: #ffffff;
+  --c-surface-2: #fbeee4;
+  --c-text: #2a1b17;
+  --c-muted: #6e5650;
+  --c-border: #efdcd0;
+  --c-accent: #b8322a;
+  --c-accent-strong: #962520;
+  --c-on-accent: #ffffff;
+  --c-accent-tint: #fbe1da;
+  --c-footer-bg: #5a1f18;
+  --c-footer-text: #fff7f0;
+
+  --f-body: "Atkinson Hyperlegible Next", system-ui, sans-serif;
+  --f-heading: "Atkinson Hyperlegible Next", system-ui, sans-serif;
+  --fw-heading: 800;
+  --tracking-heading: -0.02em;
+  --fs-base: 1.0625rem;
+
+  --radius-s: 8px;
+  --radius-m: 14px;
+  --radius-l: 28px;
+  --shadow: 0 1px 2px rgb(90 31 24 / 0.06), 0 12px 32px -8px rgb(90 31 24 / 0.14);
+}
+
+/* 2. Header / footer ----------------------------------------------------- */
+.theme-warm .site-header { border-bottom: 0; background: transparent; }
+.theme-warm .site-nav__list { gap: 0.25rem 0.5rem; }
+.theme-warm .site-nav a { padding: 0.45rem 0.9rem; border-radius: 99px; border: 0; }
+.theme-warm .site-nav a:hover { background: var(--c-surface-2); }
+.theme-warm .site-nav a[aria-current] { background: var(--c-accent-tint); color: var(--c-accent-strong); }
+@media (max-width: 47.99rem) {
+  .theme-warm.has-js-nav .site-nav a,
+  .has-js-nav .theme-warm .site-nav a { border-radius: var(--radius-s); }
+}
+.theme-warm .button { border-radius: 99px; }
+.theme-warm .site-footer { border-radius: var(--radius-l) var(--radius-l) 0 0; }
+.theme-warm .site-footer .brand,
+.theme-warm .site-footer .brand:hover { color: var(--c-footer-text); }
+.theme-warm .site-footer .brand__mark-accent { fill: #ff9a8a; }
+.theme-warm .site-footer :focus-visible { outline-color: #fff; }
+.theme-warm .theme-card { border: 0; border-radius: var(--radius-l); box-shadow: var(--shadow); padding: 1.75rem; }
+.theme-warm .theme-card:hover { transform: translateY(-3px); }
+.theme-warm .theme-card--upcoming { box-shadow: none; border: 2px dashed var(--c-border); }
+.theme-warm .theme-card--upcoming:hover { transform: none; }
+.theme-warm .theme-card__num {
+  display: inline-grid; place-items: center;
+  min-width: 2.2rem; height: 2.2rem; padding-inline: 0.4rem;
+  border-radius: 99px;
+  background: var(--c-accent-tint); color: var(--c-accent-strong);
+}
+.theme-warm .theme-card--upcoming .theme-card__num { background: var(--c-surface-2); color: var(--c-muted); }
+.theme-warm .theme-card__meta { align-items: center; }
+.theme-warm .todo { border-radius: var(--radius-m); }
+
+/* 3. Homepage ------------------------------------------------------------ */
+.wm-chip {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  border-radius: 99px;
+  background: var(--c-accent-tint);
+  color: var(--c-accent-strong);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+.wm-chip--light { background: rgb(255 255 255 / 0.18); color: #fff; }
+.wm-section-head { max-width: 40rem; }
+.wm-section-head h2 { margin-bottom: 0.75rem; }
+
+/* Hero */
+.wm-hero { padding-block: clamp(2rem, 6vw, 5rem) clamp(2rem, 5vw, 4rem); }
+.wm-hero__grid { display: grid; gap: 3rem; align-items: center; }
+@media (min-width: 60rem) { .wm-hero__grid { grid-template-columns: 1.15fr 0.85fr; gap: 4rem; } }
+.wm-hero h1 { font-size: clamp(2.5rem, 1.4rem + 4vw, 4.4rem); line-height: 1.05; margin-bottom: 1.25rem; max-width: 15ch; }
+.wm-hero .lead { margin-bottom: 2rem; color: var(--c-muted); }
+
+/* Stack of result cards (decorative) */
+.wm-stack { position: relative; height: clamp(22rem, 40vw, 28rem); max-width: 24rem; width: 100%; justify-self: center; }
+.wm-stack__card { position: absolute; inset: 0; border-radius: var(--radius-l); }
+.wm-stack__card--back { background: #f2bfae; transform: rotate(9deg) translate(1.5rem, 0.5rem); }
+.wm-stack__card--mid { background: var(--c-accent-tint); transform: rotate(-6deg) translate(-1rem, 0.5rem); }
+.wm-stack__card--front {
+  background: var(--c-accent); color: #fff;
+  transform: rotate(1.5deg);
+  padding: 2rem;
+  display: flex; flex-direction: column; gap: 1.25rem;
+  box-shadow: 0 24px 48px -16px rgb(90 31 24 / 0.45);
+}
+.wm-stack__kicker { font-size: var(--fs-sm); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.wm-stack__title { font-size: clamp(1.5rem, 1.2rem + 1vw, 1.9rem); font-weight: 800; line-height: 1.15; flex: 1; }
+.wm-stack__bars { display: grid; gap: 0.75rem; }
+.wm-stack__row { display: grid; grid-template-columns: 6.5rem 1fr; align-items: center; font-size: var(--fs-sm); }
+.wm-stack__bar { height: 0.85rem; border-radius: 99px; background: #fff; }
+.wm-stack__bar--you { width: 82%; }
+.wm-stack__bar--avg { width: 54%; opacity: 0.55; }
+.wm-stack__foot { font-size: 0.8125rem; opacity: 0.9; }
+
+/* Self-check panel */
+.wm-selfcheck__panel {
+  display: grid; gap: 2rem; align-items: center;
+  padding: clamp(2rem, 5vw, 4rem);
+  border-radius: var(--radius-l);
+  background: var(--c-accent); color: #fff;
+}
+@media (min-width: 52rem) { .wm-selfcheck__panel { grid-template-columns: 1.2fr 1fr; gap: 4rem; } }
+.wm-selfcheck__panel :focus-visible { outline-color: #fff; }
+.wm-selfcheck h2 { font-size: clamp(2rem, 1.4rem + 2.5vw, 3.25rem); margin-bottom: 1rem; }
+.wm-selfcheck__intro p:not(.wm-chip) { font-size: 1.125rem; margin-bottom: 2rem; max-width: 34rem; }
+.wm-button-light { background: var(--c-bg); color: var(--c-accent-strong); }
+.wm-button-light:hover { background: #fff; color: var(--c-accent-strong); }
+.wm-steps { list-style: none; padding: 0; display: grid; gap: 1rem; counter-reset: step; }
+.wm-steps li {
+  counter-increment: step;
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-m);
+  background: rgb(255 255 255 / 0.12);
+  font-size: 1.05rem;
+}
+.wm-steps li::before {
+  content: counter(step);
+  flex: none;
+  display: grid; place-items: center;
+  width: 2.5rem; height: 2.5rem; border-radius: 50%;
+  background: var(--c-bg); color: var(--c-accent-strong);
+  font-weight: 800;
+}
+
+/* Four levels with rings */
+.wm-levels { margin-top: var(--section-space); display: grid; gap: 3rem; align-items: center; }
+@media (min-width: 52rem) { .wm-levels { grid-template-columns: 0.8fr 1.2fr; gap: 4rem; } }
+.wm-levels h2 { margin-bottom: 0.75rem; }
+.wm-rings { width: 100%; max-width: 24rem; justify-self: center; }
+.wm-rings circle { stroke: var(--c-bg); stroke-width: 3; }
+.wm-rings__4 { fill: var(--c-surface-2); }
+.wm-rings__3 { fill: #f7d9cc; }
+.wm-rings__2 { fill: #f2bfae; }
+.wm-rings__1 { fill: var(--c-accent); }
+.wm-rings text { font-family: var(--f-heading); font-size: 19px; font-weight: 700; fill: var(--c-text); }
+.wm-rings .wm-rings__you { fill: #fff; font-size: 22px; }
+.wm-levels__list { list-style: none; padding: 0; display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); margin-top: 1.5rem; }
+.wm-levels__list a {
+  display: grid; gap: 0.15rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-m);
+  background: var(--c-surface);
+  box-shadow: var(--shadow);
+  color: var(--c-text); text-decoration: none;
+}
+.wm-levels__list a:hover { background: var(--c-accent-tint); }
+.wm-levels__list span { color: var(--c-muted); font-size: var(--fs-sm); }
+
+/* Themes */
+.wm-themes { margin-top: var(--section-space); }
+
+/* Highlights */
+.wm-highlights { margin-top: var(--section-space); }
+.wm-highlights__list { list-style: none; padding: 0; display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+.wm-highlights__list li {
+  display: grid; gap: 0.5rem;
+  padding: 1.75rem;
+  border-radius: var(--radius-l);
+  background: var(--c-accent-tint);
+}
+.wm-highlights__value { font-size: clamp(2.5rem, 2rem + 2vw, 3.5rem); font-weight: 800; line-height: 1; color: var(--c-accent-strong); }
+.wm-highlights__list a { color: var(--c-text); }
+
+/* Map, report, newsletter */
+.wm-duo { margin-top: var(--section-space); display: grid; gap: 1.25rem; }
+@media (min-width: 52rem) { .wm-duo { grid-template-columns: 1.2fr 1fr; } }
+.wm-duo__stack { display: grid; gap: 1.25rem; }
+.wm-card {
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border-radius: var(--radius-l);
+  background: var(--c-surface);
+  box-shadow: var(--shadow);
+}
+.wm-card h2 { font-size: var(--fs-xl); margin-bottom: 0.5rem; }
+.wm-card p + .button, .wm-card .wm-map-ph + .button { margin-top: 1.25rem; }
+.wm-card--tint { background: var(--c-surface-2); box-shadow: none; }
+.wm-map-ph {
+  display: grid; place-items: center;
+  aspect-ratio: 16 / 10; margin-top: 1.25rem;
+  border-radius: var(--radius-m);
+  background:
+    radial-gradient(circle at 30% 45%, #f7d9cc 0 18%, transparent 19%),
+    radial-gradient(circle at 62% 38%, #f2bfae 0 22%, transparent 23%),
+    radial-gradient(circle at 55% 72%, var(--c-accent-tint) 0 15%, transparent 16%),
+    var(--c-surface-2);
+  color: var(--c-muted); font-weight: 700; font-size: var(--fs-sm);
+}
+.wm-map-ph span { background: var(--c-surface); padding: 0.35rem 0.9rem; border-radius: 99px; }
+
+/* 4. Inner pages ---------------------------------------------------------
+   Same language as the homepage: pill labels, soft shadows instead of lines,
+   rounded corners, coral panels for calls to action. */
+
+/* Page header: kicker as a pill, big friendly headline */
+.theme-warm .page-header { padding-block: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 3vw, 2.5rem); }
+.theme-warm .page-header .kicker {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  border-radius: 99px;
+  background: var(--c-accent-tint);
+  color: var(--c-accent-strong);
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-bottom: 1.25rem;
+}
+.theme-warm .page-header h1 { font-size: clamp(2.25rem, 1.4rem + 3.5vw, 3.75rem); line-height: 1.05; }
+.theme-warm .prose ul > li::marker { color: var(--c-accent); }
+
+/* Cards and lists: no hard borders, soft shadow */
+.theme-warm .level-list { margin-top: 1.25rem; }
+.theme-warm .level-list a {
+  border-left: 0;
+  border-radius: var(--radius-m);
+  background: var(--c-surface);
+  box-shadow: var(--shadow);
+}
+.theme-warm .level-list a:hover { background: var(--c-accent-tint); }
+.theme-warm .contact-card,
+.theme-warm .download-card,
+.theme-warm .option-card { border: 0; border-radius: var(--radius-l); box-shadow: var(--shadow); }
+.theme-warm .contact-card { padding: 1.75rem; }
+.theme-warm .download-card { padding: clamp(1.5rem, 3vw, 2.25rem); }
+.theme-warm .download-card__cover {
+  border-radius: var(--radius-m);
+  transform: rotate(-3deg);
+  box-shadow: 10px 12px 0 var(--c-accent-tint), 0 18px 32px -12px rgb(90 31 24 / 0.4);
+}
+.theme-warm .team-card__photo--initials { color: var(--c-accent-strong); }
+
+/* Theme pages: table of contents as a tinted card, rounded pager */
+.theme-warm .toc {
+  padding: 1.25rem 1.25rem 1.5rem;
+  border-top: 0;
+  border-radius: var(--radius-l);
+  background: var(--c-surface-2);
+}
+.theme-warm .toc li { align-items: baseline; }
+.theme-warm .toc li::before {
+  display: inline-grid; place-items: center;
+  min-width: 1.5rem; height: 1.5rem;
+  border-radius: 50%;
+  background: var(--c-surface);
+  color: var(--c-accent-strong);
+  font-size: 0.75rem; font-weight: 700;
+}
+.theme-warm .theme-pager__link {
+  border: 0;
+  border-radius: var(--radius-l);
+  background: var(--c-surface);
+  box-shadow: var(--shadow);
+}
+.theme-warm .theme-pager__link:hover { background: var(--c-accent-tint); }
+
+/* Call-to-action band (end of theme pages): coral panel like the homepage */
+.theme-warm .cta-band__inner {
+  padding: clamp(2rem, 5vw, 3.5rem);
+  border: 0;
+  border-radius: var(--radius-l);
+  background: var(--c-accent);
+  color: var(--c-on-accent);
+}
+.theme-warm .cta-band .kicker {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  border-radius: 99px;
+  background: rgb(255 255 255 / 0.18);
+  color: #fff;
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 700;
+}
+.theme-warm .cta-band h2 { font-size: var(--fs-2xl); }
+.theme-warm .cta-band .button--primary { background: var(--c-bg); color: var(--c-accent-strong); }
+.theme-warm .cta-band .button--primary:hover { background: #fff; color: var(--c-accent-strong); }
+.theme-warm .cta-band :focus-visible { outline-color: #fff; }
+
+/* Map placeholder: same soft blobs as on the homepage */
+.theme-warm .map-placeholder__canvas {
+  border-radius: var(--radius-l);
+  background:
+    radial-gradient(circle at 30% 45%, #f7d9cc 0 18%, transparent 19%),
+    radial-gradient(circle at 62% 38%, #f2bfae 0 22%, transparent 23%),
+    radial-gradient(circle at 55% 72%, var(--c-accent-tint) 0 15%, transparent 16%),
+    var(--c-surface-2);
+}
+.theme-warm .map-placeholder__regions li { border: 0; background: var(--c-surface); box-shadow: var(--shadow); font-weight: 600; }
+
+/* Forms */
+.theme-warm .form input,
+.theme-warm .form select,
+.theme-warm .form textarea { border-radius: var(--radius-m); background: var(--c-surface); }
+.theme-warm .form [disabled] input,
+.theme-warm .form [disabled] select,
+.theme-warm .form [disabled] textarea { background: var(--c-surface-2); }

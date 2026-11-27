@@ -1,0 +1,104 @@
+{#-
+  Homepage – Option B "Swiss grid"
+  Bold and poster-like: big grotesque type, a strict grid, Swiss red, black and white.
+  Texts come from src/_data/home.yaml. Styles: src/assets/css/themes/swiss.css
+-#}
+<section class="sw-hero" aria-labelledby="hero-title">
+  <div class="container sw-hero__grid">
+    <p class="sw-hero__kicker">{{ home.hero.kicker }}</p>
+    <h1 id="hero-title" class="sw-hero__title">{{ home.hero.title }}</h1>
+    <div class="sw-hero__side">
+      <p>{{ home.hero.lead }}</p>
+      <div class="button-row">
+        <a class="button sw-button-light" href="{{ home.hero.primary.url }}">{{ home.hero.primary.label }}</a>
+        <a class="button sw-button-outline" href="{{ home.hero.secondary.url }}">{{ home.hero.secondary.label }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sw-stats" aria-labelledby="stats-title">
+  <div class="container">
+    <h2 id="stats-title" class="visually-hidden">Key figures</h2>
+    <ul class="sw-stats__list">
+      {%- for h in home.highlights %}
+      <li>
+        <a href="{{ h.url }}">
+          <span class="sw-stats__value">{{ h.value }}</span>
+          <span class="sw-stats__label">{{ h.label }}</span>
+        </a>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="sw-selfcheck" aria-labelledby="sc-title">
+  <div class="container sw-selfcheck__grid">
+    <p class="sw-selfcheck__big" aria-hidden="true">?</p>
+    <div>
+      <p class="sw-label">{{ home.selfcheck.kicker }}</p>
+      <h2 id="sc-title">{{ home.selfcheck.title }}</h2>
+      <p>{{ home.selfcheck.text }}</p>
+      <a class="button button--primary" href="/self-check/">{{ home.selfcheck.cta }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="sw-themes container" aria-labelledby="themes-title">
+  <div class="sw-section-head">
+    <h2 id="themes-title">{{ home.themes.title }}</h2>
+    <p>{{ home.themes.text }}</p>
+  </div>
+  <ol class="sw-tiles">
+    {%- for item in collections.themes %}
+    <li class="sw-tile{% if item.data.status == 'upcoming' %} is-upcoming{% endif %}">
+      <span class="sw-tile__num" aria-hidden="true">{{ item.data.order | pad }}</span>
+      <span class="sw-tile__level">{{ item.data.availableFrom if item.data.status == 'upcoming' else (item.data.level or 'Overview') }}</span>
+      <h3 class="sw-tile__title">
+        {%- if item.url %}<a href="{{ item.url }}">{{ item.data.title }}</a>{% else %}{{ item.data.title }}{% endif -%}
+      </h3>
+    </li>
+    {%- endfor %}
+  </ol>
+</section>
+
+<section class="sw-levels" aria-labelledby="levels-title">
+  <div class="container">
+    <div class="sw-section-head">
+      <h2 id="levels-title">{{ home.levels.title }}</h2>
+      <p>{{ home.levels.text }}</p>
+    </div>
+    <ol class="sw-levels__list">
+      {%- for level in home.levels.items %}
+      <li>
+        <span class="sw-levels__idx" aria-hidden="true">{{ loop.index }}</span>
+        <a href="{{ level.url }}">{{ level.name }}</a>
+        <span>{{ level.text }}</span>
+      </li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="sw-split container" aria-label="Regions and report">
+  <article class="sw-split__map">
+    <p class="sw-label">{{ home.map.kicker }}</p>
+    <h2>{{ home.map.title }}</h2>
+    <p>{{ home.map.text }}</p>
+    <div class="sw-map-ph" aria-hidden="true"><span>Map · coming soon</span></div>
+    <a class="sw-arrow-link" href="{{ home.map.url }}">{{ home.map.cta }}</a>
+  </article>
+  <article class="sw-split__report">
+    <p class="sw-label">{{ home.report.kicker }}</p>
+    <h2>{{ home.report.title }}</h2>
+    <p>{{ home.report.text }}</p>
+    <a class="button sw-button-light" href="/report/">{{ home.report.cta }}</a>
+  </article>
+</section>
+
+<section class="sw-newsletter container" aria-labelledby="nl-title">
+  <h2 id="nl-title">{{ home.newsletter.title }}</h2>
+  <p>{{ home.newsletter.text }}</p>
+  <a class="sw-arrow-link" href="/newsletter/">{{ home.newsletter.cta }}</a>
+</section>

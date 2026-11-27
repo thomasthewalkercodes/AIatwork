@@ -1,0 +1,48 @@
+# ---------------------------------------------------------------------------
+# Global site settings. Available in every template as {{ site.xyz }}.
+# Anything marked TODO still needs a real value.
+# ---------------------------------------------------------------------------
+
+name: "AI & People at Work"
+tagline: "Swiss study on employees' experiences of working with AI"
+description: >-
+  AI & People at Work is an annual survey by the University of Zurich on how
+  employees in Switzerland experience working with generative AI.
+url: "https://aiatwork.ch"        # TODO: confirm final domain (used for share links / social previews)
+lang: "en"                         # TODO: decide on languages (EN / DE / FR / IT)
+
+# Visual style used by all regular pages.
+# One of: editorial | swiss | warm   (see /design-options/ to compare)
+# Chosen design: C · Warm.
+theme: "warm"
+
+organisation:
+  name: "University of Zurich"
+  unit: "Chair of Work and Organizational Psychology"
+  url: "https://www.uzh.ch"        # TODO: replace with the Chair's own page
+
+hub:
+  name: "UZH.ai Hub"
+  url: "#"                          # TODO: add link
+
+contact:
+  general: "TODO@uzh.ch"            # TODO: general contact address
+  media: "TODO@uzh.ch"              # TODO: media contact address
+  mediaPerson: "TODO: name, role"   # TODO: who answers media requests
+
+# Social media profiles. Leave url empty ("") to hide an entry.
+social:
+  - name: "LinkedIn"
+    url: ""
+  - name: "Instagram"
+    url: ""
+  - name: "Bluesky"
+    url: ""
+
+report:
+  title: "AI & People at Work – Report 2026"
+  wave: "1st wave"
+  published: "2026"
+  # Put the PDF into src/assets/downloads/ and set available: true
+  file: "/assets/downloads/ai-people-at-work-report-2026.pdf"
+  available: false

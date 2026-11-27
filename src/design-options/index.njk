@@ -1,0 +1,43 @@
+---
+layout: layouts/page.njk
+title: Compare the homepage designs
+kicker: Design review · internal
+lead: Three styles for the same homepage – same texts, same structure, different look. Pick one (or mix), then set it in src/_data/site.yaml.
+bodyClass: ""
+permalink: /design-options/
+---
+
+<div class="option-grid">
+  <article class="option-card">
+    <div class="option-card__swatch" aria-hidden="true"><span class="swatch-a1"></span><span class="swatch-a2"></span><span class="swatch-a3"></span><span class="swatch-a4"></span></div>
+    <div class="option-card__body">
+      <h2><a href="/design-options/a-editorial/">A · Editorial</a></h2>
+      <p>Calm, credible, close to the printed report. Serif headlines, warm paper background, deep crimson. Themes read like a magazine's table of contents.</p>
+      <p class="option-card__fonts">Source Serif 4 + Source Sans 3</p>
+    </div>
+  </article>
+  <article class="option-card">
+    <div class="option-card__swatch" aria-hidden="true"><span class="swatch-b1"></span><span class="swatch-b2"></span><span class="swatch-b3"></span><span class="swatch-b4"></span></div>
+    <div class="option-card__body">
+      <h2><a href="/design-options/b-swiss/">B · Swiss grid</a></h2>
+      <p>Bold and poster-like, in the tradition of Swiss graphic design. Big type, strict grid, Swiss red with black and white. Most eye-catching.</p>
+      <p class="option-card__fonts">Inter</p>
+    </div>
+  </article>
+  <article class="option-card">
+    <div class="option-card__swatch" aria-hidden="true"><span class="swatch-c1"></span><span class="swatch-c2"></span><span class="swatch-c3"></span><span class="swatch-c4"></span></div>
+    <div class="option-card__body">
+      <h2><a href="/design-options/c-warm/">C · Warm</a></h2>
+      <p>Friendly and approachable, self-check first. Rounded shapes, soft coral red, cream background. Typeface designed for readers with low vision.</p>
+      <p class="option-card__fonts">Atkinson Hyperlegible Next</p>
+    </div>
+  </article>
+</div>
+
+<h2>How to choose</h2>
+<ol>
+  <li>Open each option, also on your phone.</li>
+  <li>Set the winner in <code>src/_data/site.yaml</code>: <code>theme: editorial</code>, <code>swiss</code> or <code>warm</code>. The homepage <em>and</em> all other pages switch to that style.</li>
+  <li>Clean up: delete <code>src/design-options/</code>, the unused files in <code>src/_includes/home/</code> and <code>src/assets/css/themes/</code>, and the design-switcher partial.</li>
+</ol>
+<p class="muted">Note: all pages other than these three previews use the style set in <code>site.yaml</code> (currently <strong>{{ site.theme }}</strong>).</p>

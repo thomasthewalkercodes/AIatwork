@@ -1,0 +1,68 @@
+# ---------------------------------------------------------------------------
+# Research team (shown on /about/). Order here = order on the page.
+#   photo: file name in src/assets/img/team/ (leave empty to show initials)
+#   alt:   short description of the photo for screen readers (required if photo is set)
+# ---------------------------------------------------------------------------
+
+- name: "Prof. Laurenz L. Meier"
+  initials: "LM"
+  affiliation: "Work and Organizational Psychology"
+  role: "TODO: role in the project"
+  photo: ""
+  alt: ""
+
+- name: "Prof. Eva Bittner"
+  initials: "EB"
+  affiliation: "Human-Centered Information Systems Engineering"
+  role: "TODO: role in the project"
+  photo: ""
+  alt: ""
+
+- name: "Prof. Georg Bauer"
+  initials: "GB"
+  affiliation: "Epidemiology, Biostatistics and Prevention"
+  role: "TODO: role in the project"
+  photo: ""
+  alt: ""
+
+- name: "Prof. Lauren Howe"
+  initials: "LH"
+  affiliation: "Business Administration"
+  role: "TODO: role in the project"
+  photo: ""
+  alt: ""
+
+- name: "Dr. Martin Tušl"
+  initials: "MT"
+  affiliation: "TODO: affiliation"
+  role: "TODO: role in the project"
+  photo: ""
+  alt: ""
+
+- name: "Dr. Lucas Memmert"
+  initials: "LM"
+  affiliation: "TODO: affiliation"
+  role: "TODO: role in the project"
+  photo: ""
+  alt: ""
+
+- name: "Nick Kabrel"
+  initials: "NK"
+  affiliation: "TODO: affiliation"
+  role: "TODO: role in the project"
+  photo: ""
+  alt: ""
+
+- name: "Salomé Dépraz"
+  initials: "SD"
+  affiliation: "TODO: affiliation"
+  role: "TODO: role in the project"
+  photo: ""
+  alt: ""
+
+- name: "Thomas Walker"
+  initials: "TW"
+  affiliation: "TODO: affiliation"
+  role: "TODO: role in the project"
+  photo: ""
+  alt: ""

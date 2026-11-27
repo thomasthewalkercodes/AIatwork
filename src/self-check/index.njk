@@ -1,0 +1,151 @@
+---
+layout: layouts/page.njk
+title: How do you compare?
+kicker: Self-check
+lead: Four quick questions about how you work with AI – and a personal card that shows how you compare with employees across Switzerland.
+description: Take the self-check and see how your experience with AI at work compares with employees across Switzerland.
+wide: true
+scripts: ["/assets/js/self-check.js"]
+---
+{#-
+  The self-check app. Questions, answer scales, comparison values and all
+  wording on the result card come from src/_data/selfcheck.yaml.
+  The questions are rendered here as a normal form; src/assets/js/self-check.js
+  shows them one at a time and fills in the result card.
+  Styles: "Self-check" section in src/assets/css/components.css.
+-#}
+{%- set questions = (selfcheck.profile | selectattr("enabled")).concat(selfcheck.items | selectattr("enabled")) -%}
+{%- set domain = site.url | replace("https://", "") | replace("http://", "") -%}
+{%- set shareUrl = site.url + "/self-check/" -%}
+
+<div class="sc" id="self-check-app" data-share-url="{{ shareUrl }}">
+  <script type="application/json" id="selfcheck-data">{{ selfcheck | jsonScript | safe }}</script>
+
+  {#- 1. Start ---------------------------------------------------------- -#}
+  <section class="sc-start" data-screen="start" aria-labelledby="sc-start-title">
+    <div>
+      <ul class="sc-facts" aria-label="At a glance">
+        <li>{{ questions.length }} questions</li>
+        <li>About 1 minute</li>
+        <li>Nothing stored</li>
+      </ul>
+      <h2 id="sc-start-title">Find your AI-at-work type</h2>
+      <p>{{ selfcheck.intro }}</p>
+      <p class="sc-nojs" data-nojs>The self-check runs in your browser, so it needs JavaScript. Please turn it on and reload this page.</p>
+      <button class="button sc-button-light" type="button" data-action="start" hidden>Start the self-check</button>
+    </div>
+    <ol class="sc-steps">
+      <li><span><strong>Answer</strong> {{ questions.length }} quick questions</span></li>
+      <li><span><strong>Compare</strong> yourself with employees across Switzerland</span></li>
+      <li><span><strong>Share</strong> your personal card</span></li>
+    </ol>
+  </section>
+
+  {#- 2. Questions (one at a time) ------------------------------------- -#}
+  <form class="sc-quiz" data-screen="quiz" aria-label="Self-check questions" novalidate hidden>
+    <div class="sc-progress">
+      <p class="sc-progress__label" data-progress-label>Question 1 of {{ questions.length }}</p>
+      <div class="sc-progress__track" aria-hidden="true"><span class="sc-progress__fill" data-progress-fill></span></div>
+    </div>
+
+    {%- for q in questions %}
+    <fieldset class="sc-question" data-code="{{ q.code }}"{% if q.usersOnly %} data-users-only{% endif %} hidden>
+      <legend class="sc-question__legend">
+        <span class="sc-question__topic">{{ q.construct }}</span>
+        <span class="sc-question__text" tabindex="-1">{{ q.text }}</span>
+      </legend>
+      <div class="sc-options">
+        {%- for option in selfcheck.scales[q.scale] %}
+        <label class="sc-option">
+          <input type="radio" name="{{ q.code }}" value="{{ loop.index0 }}">
+          <span>{{ option }}</span>
+        </label>
+        {%- endfor %}
+      </div>
+    </fieldset>
+    {%- endfor %}
+
+    <p class="sc-hint" data-hint role="status"></p>
+    <div class="sc-nav">
+      <button class="button button--ghost" type="button" data-action="back">Back</button>
+      <button class="button button--primary" type="submit" data-next>Next</button>
+    </div>
+  </form>
+
+  {#- 3. Result card ---------------------------------------------------- -#}
+  <section class="sc-result" data-screen="result" aria-labelledby="sc-result-title" hidden>
+    <div class="sc-result__visual">
+      <div class="sc-deck">
+        <span class="sc-deck__card sc-deck__card--back" aria-hidden="true"></span>
+        <span class="sc-deck__card sc-deck__card--mid" aria-hidden="true"></span>
+
+        <article class="sc-card" data-card aria-label="Your result card">
+          <svg class="sc-card__rings" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+            <circle cx="200" cy="200" r="195" class="sc-card__ring sc-card__ring--4"/>
+            <circle cx="200" cy="230" r="150" class="sc-card__ring sc-card__ring--3"/>
+            <circle cx="200" cy="260" r="105" class="sc-card__ring sc-card__ring--2"/>
+            <circle cx="200" cy="290" r="60" class="sc-card__ring sc-card__ring--1"/>
+            <text x="200" y="297" text-anchor="middle">You</text>
+          </svg>
+
+          <p class="sc-card__kicker">My AI at work · {{ site.report.published }}</p>
+
+          <div class="sc-card__who">
+            <p class="sc-card__label">My AI-at-work type</p>
+            <p class="sc-card__persona" data-persona-name></p>
+            <p class="sc-card__tagline" data-persona-text></p>
+          </div>
+
+          <div class="sc-card__stats">
+            <p class="sc-card__legend"><span class="sc-key sc-key--you" aria-hidden="true"></span>Me <span class="sc-key sc-key--avg" aria-hidden="true"></span>Average in Switzerland</p>
+            <ul class="sc-card__list" data-stats></ul>
+          </div>
+
+          <footer class="sc-card__foot">
+            <span class="sc-card__brand">{% include "components/logo-mark.njk" %}{{ domain }} · {{ site.organisation.name }}</span>
+            {%- if selfcheck.demo %}
+            <span class="sc-card__demo">Demo data</span>
+            {%- endif %}
+          </footer>
+        </article>
+      </div>
+    </div>
+
+    <div class="sc-result__side">
+      <p class="kicker">Your AI-at-work type</p>
+      <h2 id="sc-result-title" tabindex="-1" data-persona-name></h2>
+      <p class="lead" data-persona-text></p>
+      {%- if selfcheck.demo %}
+      <p class="sc-demo-note"><strong>Demo version.</strong> The comparison values are invented for testing. They are not results from the survey.</p>
+      {%- endif %}
+
+      <h3>Share your card</h3>
+      <div class="sc-share">
+        <button class="button button--primary" type="button" data-action="share" hidden>Share card</button>
+        <button class="button button--primary" type="button" data-action="download">Save image</button>
+        <a class="button button--ghost" data-share="linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url={{ shareUrl | urlencode }}" target="_blank" rel="noopener">LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></a>
+        <a class="button button--ghost" data-share="whatsapp" href="https://wa.me/?text={{ ('How do you compare? ' + shareUrl) | urlencode }}" target="_blank" rel="noopener">WhatsApp<span class="visually-hidden"> (opens in a new tab)</span></a>
+      </div>
+      <p class="sc-small" data-share-status role="status"></p>
+      <p class="sc-small muted">The image is made on your device, sized for Instagram stories. Your answers are never sent anywhere. Only what you choose to share leaves your browser.</p>
+
+      <h3>Dig deeper</h3>
+      <ul class="sc-links">
+        {%- for q in questions %}{% if q.link %}
+        <li data-code="{{ q.code }}"><a href="{{ q.link }}">{{ q.linkLabel or q.construct }}</a></li>
+        {%- endif %}{% endfor %}
+      </ul>
+
+      {%- if not selfcheck.demo %}
+      <p class="sc-small muted">Comparison values are weighted survey results, not a scientific assessment of you.</p>
+      {%- endif %}
+      <p class="sc-restart"><button class="button button--ghost" type="button" data-action="restart">Start again</button></p>
+    </div>
+  </section>
+</div>
+
+{% todo "Self-check – still to do" %}
+- Replace the **demo** comparison values in `src/_data/selfcheck.yaml` with the weighted survey results, then set `demo: false`.
+- Optional: compare visitors with people in a similar type of job (profile question `DG13`; needs comparison values per job type).
+- Optional: a short "Was this useful?" question after the result (see the open question on the Contact page).
+{% endtodo %}

@@ -1,0 +1,6 @@
+{
+  "layout": "layouts/theme.njk",
+  "tags": ["theme"],
+  "permalink": "/findings/{{ page.fileSlug }}/",
+  "status": "published"
+}

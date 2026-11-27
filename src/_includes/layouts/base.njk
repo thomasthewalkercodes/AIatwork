@@ -1,0 +1,57 @@
+{#-
+  Base HTML shell used by every page.
+  Front matter options a page can set:
+    title         – page title (shown in the browser tab)
+    description   – short summary for search engines and social previews
+    theme         – override the visual style for this page (editorial | swiss | warm)
+    bodyClass     – extra CSS class on <body>
+    scripts       – list of extra JS files, e.g. ["/assets/js/self-check.js"]
+-#}
+{%- set activeTheme = theme or site.theme -%}
+<!doctype html>
+<html lang="{{ site.lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title and page.url != "/" %}{{ title }} · {% endif %}{{ site.name }}</title>
+  <meta name="description" content="{{ description or site.description }}">
+  {%- if noindex %}
+  <meta name="robots" content="noindex">{% endif %}
+
+  {#- Security & privacy: only load files from this website (no trackers,
+      no third-party fonts or scripts). If you add an external service later
+      (e.g. a form provider), add its domain here. -#}
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  {#- Social previews (LinkedIn, WhatsApp, …). TODO: add a 1200×630 share image. -#}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:title" content="{{ title or site.name }}">
+  <meta property="og:description" content="{{ description or site.description }}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/fonts.css">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/themes/{{ activeTheme }}.css">
+</head>
+<body class="theme-{{ activeTheme }}{% if bodyClass %} {{ bodyClass }}{% endif %}">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  {% if designPreview %}{% include "partials/design-switcher.njk" %}{% endif %}
+  {% include "partials/header.njk" %}
+
+  <main id="main" tabindex="-1">
+    {{ content | safe }}
+  </main>
+
+  {% include "partials/footer.njk" %}
+
+  <script src="/assets/js/main.js" defer></script>
+  {%- for script in scripts %}
+  <script src="{{ script }}" defer></script>
+  {%- endfor %}
+</body>
+</html>

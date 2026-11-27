@@ -1,0 +1,17 @@
+{#-
+  One theme card. Expects a variable `item` (an entry of collections.themes).
+  Published themes are links; upcoming themes are shown as "coming soon".
+-#}
+{%- if item.data.status == "upcoming" %}
+<article class="theme-card theme-card--upcoming">
+  <p class="theme-card__meta"><span class="theme-card__num">{{ item.data.order | pad }}</span> {{ item.data.availableFrom or "Coming soon" }}</p>
+  <h3 class="theme-card__title">{{ item.data.title }}</h3>
+  <p class="theme-card__text">{{ item.data.summary }}</p>
+</article>
+{%- else %}
+<article class="theme-card">
+  <p class="theme-card__meta"><span class="theme-card__num">{{ item.data.order | pad }}</span> {{ item.data.level or "Overview" }}</p>
+  <h3 class="theme-card__title"><a href="{{ item.url }}">{{ item.data.title }}</a></h3>
+  <p class="theme-card__text">{{ item.data.summary }}</p>
+</article>
+{%- endif %}

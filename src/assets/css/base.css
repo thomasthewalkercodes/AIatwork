@@ -1,0 +1,316 @@
+/* ==========================================================================
+   base.css – foundations shared by every page and every theme
+   --------------------------------------------------------------------------
+   1. Design tokens (defaults – each theme in themes/*.css overrides them)
+   2. Reset
+   3. Typography
+   4. Layout helpers
+   5. Site header & navigation
+   6. Site footer
+   7. Page header & prose
+   8. Buttons
+   9. Accessibility helpers
+   ========================================================================== */
+
+/* 1. Design tokens ------------------------------------------------------- */
+:root {
+  /* Colours */
+  --c-bg: #ffffff;
+  --c-surface: #ffffff;        /* cards */
+  --c-surface-2: #f5f5f5;      /* subtle tinted areas */
+  --c-text: #1a1a1a;
+  --c-muted: #5c5c5c;
+  --c-border: #e2e2e2;
+  --c-accent: #b3122e;         /* brand red – links, buttons */
+  --c-accent-strong: #8c0e24;  /* hover */
+  --c-on-accent: #ffffff;      /* text on accent backgrounds */
+  --c-accent-tint: #fbe9ea;
+  --c-focus: #1d4ed8;          /* focus ring – blue, so it is visible next to red */
+  --c-footer-bg: var(--c-surface-2);
+  --c-footer-text: var(--c-text);
+
+  /* Type */
+  --f-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --f-heading: var(--f-body);
+  --fw-heading: 700;
+  --tracking-heading: -0.01em;
+  --lh-body: 1.6;
+  --fs-sm: 0.875rem;
+  --fs-base: 1.0625rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: clamp(1.4rem, 1.2rem + 0.8vw, 1.8rem);
+  --fs-2xl: clamp(1.9rem, 1.4rem + 2vw, 2.75rem);
+  --fs-3xl: clamp(2.4rem, 1.5rem + 4vw, 4.5rem);
+
+  /* Shape & space */
+  --radius-s: 4px;
+  --radius-m: 8px;
+  --radius-l: 16px;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 4px 16px rgb(0 0 0 / 0.06);
+  --container: 74rem;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --section-space: clamp(3rem, 6vw, 6rem);
+}
+
+/* 2. Reset --------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body, h1, h2, h3, h4, p, figure, blockquote, ul, ol, dl, dd { margin: 0; }
+img, svg { display: block; max-width: 100%; height: auto; }
+input, button, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:target { scroll-margin-top: 2rem; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* 3. Typography ---------------------------------------------------------- */
+body {
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--f-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+main { flex: 1; }
+main:focus { outline: none; }
+
+h1, h2, h3, h4 {
+  font-family: var(--f-heading);
+  font-weight: var(--fw-heading);
+  letter-spacing: var(--tracking-heading);
+  line-height: 1.15;
+  text-wrap: balance;
+}
+h1 { font-size: var(--fs-3xl); }
+h2 { font-size: var(--fs-2xl); }
+h3 { font-size: var(--fs-xl); }
+p { text-wrap: pretty; }
+
+a { color: var(--c-accent); text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+a:hover { color: var(--c-accent-strong); text-decoration-thickness: 2px; }
+
+code {
+  font-family: ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  background: var(--c-surface-2);
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-s);
+}
+
+.kicker {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  margin-bottom: 0.75rem;
+}
+.kicker a { color: inherit; }
+.lead { font-size: var(--fs-lg); line-height: 1.5; color: var(--c-muted); max-width: 42rem; }
+.muted { color: var(--c-muted); }
+
+/* 4. Layout helpers ------------------------------------------------------ */
+.container {
+  width: 100%;
+  max-width: calc(var(--container) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.section { margin-top: var(--section-space); }
+.section > h2 { margin-bottom: 1rem; }
+.prose > .section:first-child { margin-top: 0; }
+.button-row { display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; align-items: center; }
+
+/* 5. Site header & navigation ------------------------------------------- */
+.site-header {
+  border-bottom: 1px solid var(--c-border);
+  background: var(--c-bg);
+}
+.site-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  padding-block: 1rem;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--c-text);
+  text-decoration: none;
+  font-family: var(--f-heading);
+  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+.brand:hover { color: var(--c-text); }
+.brand__mark { width: 2rem; height: auto; fill: currentColor; flex: none; }
+.brand__mark-accent { fill: var(--c-accent); }
+.brand__name-sub { font-weight: 400; }
+
+.site-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  list-style: none;
+  padding: 0;
+}
+.site-nav a {
+  display: inline-block;
+  padding-block: 0.4rem;
+  color: var(--c-text);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+}
+.site-nav a:hover { border-bottom-color: var(--c-border); }
+.site-nav a[aria-current] { border-bottom-color: var(--c-accent); }
+
+.nav-toggle {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: none;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-m);
+  font-weight: 600;
+}
+.nav-toggle__bars,
+.nav-toggle__bars::before,
+.nav-toggle__bars::after {
+  display: block;
+  width: 1.1rem;
+  height: 2px;
+  background: currentColor;
+  position: relative;
+}
+.nav-toggle__bars::before, .nav-toggle__bars::after { content: ""; position: absolute; left: 0; }
+.nav-toggle__bars::before { top: -6px; }
+.nav-toggle__bars::after { top: 6px; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars { background: transparent; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars::before { top: 0; transform: rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars::after { top: 0; transform: rotate(-45deg); }
+
+/* Small screens: menu button (only when JavaScript is available) */
+@media (max-width: 47.99rem) {
+  .nav-toggle:not([hidden]) { display: inline-flex; }
+  .has-js-nav .site-nav { display: none; width: 100%; }
+  .has-js-nav .site-nav.is-open { display: block; }
+  .has-js-nav .site-nav__list { flex-direction: column; gap: 0; padding-block: 0.5rem; }
+  .has-js-nav .site-nav a { display: block; padding-block: 0.75rem; border-bottom: 1px solid var(--c-border); }
+  .has-js-nav .site-nav a[aria-current] { border-bottom-color: var(--c-accent); }
+}
+
+/* 6. Site footer --------------------------------------------------------- */
+.site-footer {
+  margin-top: var(--section-space);
+  padding-block: 3.5rem 2rem;
+  background: var(--c-footer-bg);
+  color: var(--c-footer-text);
+  font-size: var(--fs-sm);
+}
+.site-footer a { color: inherit; }
+.site-footer__grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+}
+.site-footer__about { grid-column: span 2; max-width: 26rem; }
+.site-footer__about p + p { margin-top: 0.5rem; }
+.brand--footer { margin-bottom: 1rem; }
+.site-footer__heading {
+  font-family: var(--f-body);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+.site-footer ul { list-style: none; padding: 0; display: grid; gap: 0.4rem; }
+.site-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  justify-content: space-between;
+  margin-top: 3rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+}
+.site-footer__social { display: flex !important; gap: 1rem !important; }
+@media (max-width: 40rem) { .site-footer__about { grid-column: 1 / -1; } }
+
+/* 7. Page header & prose -------------------------------------------------- */
+.page-header {
+  padding-block: clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 3vw, 2.5rem);
+}
+.page-header h1 { max-width: 20ch; margin-bottom: 1rem; }
+.page-body { padding-bottom: 1rem; }
+
+.prose { max-width: 46rem; }
+.prose--wide { max-width: none; }
+.prose > * + * { margin-top: 1.1rem; }
+.prose h2 { margin-top: 3rem; font-size: var(--fs-xl); }
+.prose h3 { margin-top: 2rem; font-size: var(--fs-lg); }
+.prose ul, .prose ol { padding-left: 1.25rem; }
+.prose li + li { margin-top: 0.35rem; }
+
+/* 8. Buttons ------------------------------------------------------------- */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.875rem;
+  padding: 0.7rem 1.35rem;
+  border: 2px solid transparent;
+  border-radius: var(--radius-m);
+  font-weight: 650;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+.button--primary { background: var(--c-accent); color: var(--c-on-accent); }
+.button--primary:hover { background: var(--c-accent-strong); color: var(--c-on-accent); }
+.button--ghost { border-color: currentColor; color: var(--c-text); background: transparent; }
+.button--ghost:hover { background: var(--c-surface-2); color: var(--c-text); }
+.button--link { padding-inline: 0; min-height: 0; color: var(--c-text); text-decoration: underline; text-underline-offset: 0.25em; }
+.button[disabled], fieldset[disabled] .button { opacity: 0.55; cursor: not-allowed; }
+
+/* 9. Accessibility helpers ---------------------------------------------- */
+:focus-visible {
+  outline: 3px solid var(--c-focus);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: var(--c-text);
+  color: var(--c-bg);
+  font-weight: 700;
+  border-radius: var(--radius-m);
+}
+.skip-link:focus { top: 1rem; color: var(--c-bg); }
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

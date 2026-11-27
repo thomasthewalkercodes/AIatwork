@@ -1,0 +1,62 @@
+---
+layout: layouts/page.njk
+title: The report
+kicker: Report 2026 · 1st wave
+lead: All results, figures and methods of the first wave of AI & People at Work.
+description: Download the AI & People at Work report 2026.
+---
+
+<div class="download-card">
+  <div class="download-card__cover" aria-hidden="true">
+    <span>AI &amp; People<br>at Work</span>
+    <small>Report {{ site.report.published }}</small>
+  </div>
+  <div class="download-card__body">
+    <h2>{{ site.report.title }}</h2>
+    <p>Swiss Study on Employees' Experiences of Working with AI · {{ site.report.wave }} · PDF</p>
+    {%- if site.report.available %}
+    <a class="button button--primary" href="{{ site.report.file }}" download>Download the report (PDF)</a>
+    {%- else %}
+    <p><button class="button button--primary" type="button" disabled>Download the report (PDF)</button></p>
+    <p class="muted">Coming soon. <a href="/newsletter/">Sign up</a> to be notified.</p>
+    {%- endif %}
+  </div>
+</div>
+
+{% todo "Report download" %}
+- Put the PDF into `src/assets/downloads/` and set `report.available: true` in `src/_data/site.yaml`.
+- Optional: an accessible version (tagged PDF), and a short summary in German and French.
+{% endtodo %}
+
+<section class="section" aria-labelledby="contents-heading">
+  <h2 id="contents-heading">What's inside</h2>
+  <ol class="contents-list">
+    {%- for item in collections.themes %}{% if item.data.status != "upcoming" %}
+    <li><a href="{{ item.url }}">{{ item.data.title }}</a>{% if item.data.level and item.data.level != "Overview" %} <span class="muted">· {{ item.data.level }}</span>{% endif %}</li>
+    {%- endif %}{% endfor %}
+  </ol>
+</section>
+
+<section class="section" aria-labelledby="method-heading">
+  <h2 id="method-heading">How the study works</h2>
+  <p>An online survey of employed people in the German-, French- and Italian-speaking parts of Switzerland. Results are weighted to represent the Swiss workforce. The survey is repeated every year.</p>
+  {% todo "Method in plain language" %}
+- Short, friendly explanation of sample, weighting and "what an association means" (no causal claims).
+- Small FAQ: Who was asked? What counts as "AI"? Why do other surveys show different numbers?
+  {% endtodo %}
+</section>
+
+<section class="section" aria-labelledby="cite-heading">
+  <h2 id="cite-heading">How to cite</h2>
+  {% todo "Citation" %}
+Recommended citation (APA) with a "copy" button, plus DOI if the report gets one.
+  {% endtodo %}
+</section>
+
+<section class="section" aria-labelledby="waves-heading">
+  <h2 id="waves-heading">All waves</h2>
+  <ul class="wave-list">
+    <li><strong>Wave 1 · 2026</strong> – {% if site.report.available %}<a href="{{ site.report.file }}">PDF</a>{% else %}coming soon{% endif %}</li>
+    <li class="muted"><strong>Wave 2 · 2027</strong> – planned</li>
+  </ul>
+</section>

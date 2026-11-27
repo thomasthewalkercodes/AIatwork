@@ -1,0 +1,24 @@
+---
+layout: layouts/page.njk
+title: Stay up to date
+kicker: Newsletter
+lead: Get a short email when new results are published – about once or twice a year. No spam, no tracking.
+description: Sign up to hear when new results from AI & People at Work are published.
+---
+
+<form class="form form--inline" aria-describedby="newsletter-status">
+  <fieldset disabled>
+    <div class="form__row">
+      <label for="newsletter-email">Email address</label>
+      <input id="newsletter-email" name="email" type="email" autocomplete="email">
+    </div>
+    <button class="button button--primary" type="submit">Sign up</button>
+  </fieldset>
+</form>
+<p id="newsletter-status" class="muted">Sign-up is not active yet.</p>
+
+{% todo "Mailing list" %}
+- Choose a mailing-list service (or a UZH list) with **double opt-in**, no tracking pixels and an easy unsubscribe link.
+- Store as little as possible: email address only.
+- Describe the service on the privacy page and add its domain to the Content Security Policy (`form-action`).
+{% endtodo %}

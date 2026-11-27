@@ -1,0 +1,122 @@
+{#-
+  Homepage – Option C "Warm"
+  Friendly and approachable, self-check first. Rounded shapes, soft coral red,
+  Atkinson Hyperlegible (a typeface designed for readers with low vision).
+  Texts come from src/_data/home.yaml. Styles: src/assets/css/themes/warm.css
+-#}
+<section class="wm-hero" aria-labelledby="hero-title">
+  <div class="container wm-hero__grid">
+    <div class="wm-hero__text">
+      <p class="wm-chip">{{ home.hero.kicker }}</p>
+      <h1 id="hero-title">{{ home.hero.title }}</h1>
+      <p class="lead">{{ home.hero.lead }}</p>
+      <div class="button-row">
+        <a class="button button--primary" href="{{ home.hero.primary.url }}">{{ home.hero.primary.label }}</a>
+        <a class="button button--ghost" href="{{ home.hero.secondary.url }}">{{ home.hero.secondary.label }}</a>
+      </div>
+    </div>
+
+    {#- Decorative preview of the shareable result cards -#}
+    <div class="wm-stack" aria-hidden="true">
+      <div class="wm-stack__card wm-stack__card--back"></div>
+      <div class="wm-stack__card wm-stack__card--mid"></div>
+      <div class="wm-stack__card wm-stack__card--front">
+        <p class="wm-stack__kicker">My AI at work · 2026</p>
+        <p class="wm-stack__title">You're more open about AI than XX % of employees.</p>
+        <div class="wm-stack__bars">
+          <span class="wm-stack__row"><span>You</span><span class="wm-stack__bar wm-stack__bar--you"></span></span>
+          <span class="wm-stack__row"><span>Switzerland</span><span class="wm-stack__bar wm-stack__bar--avg"></span></span>
+        </div>
+        <p class="wm-stack__foot">aiatwork.ch</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wm-selfcheck container" aria-labelledby="sc-title">
+  <div class="wm-selfcheck__panel">
+    <div class="wm-selfcheck__intro">
+      <p class="wm-chip wm-chip--light">{{ home.selfcheck.kicker }}</p>
+      <h2 id="sc-title">{{ home.selfcheck.title }}</h2>
+      <p>{{ home.selfcheck.text }}</p>
+      <a class="button wm-button-light" href="/self-check/">{{ home.selfcheck.cta }}</a>
+    </div>
+    <ol class="wm-steps">
+      <li><span><strong>Answer</strong> a few quick questions</span></li>
+      <li><span><strong>Compare</strong> yourself with employees across Switzerland</span></li>
+      <li><span><strong>Share</strong> your mini-report</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="wm-levels container" aria-labelledby="levels-title">
+  <svg class="wm-rings" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+    <circle cx="200" cy="200" r="195" class="wm-rings__4"/>
+    <circle cx="200" cy="230" r="150" class="wm-rings__3"/>
+    <circle cx="200" cy="260" r="105" class="wm-rings__2"/>
+    <circle cx="200" cy="290" r="60"  class="wm-rings__1"/>
+    <text x="200" y="40"  text-anchor="middle">Society</text>
+    <text x="200" y="115" text-anchor="middle">Organisation</text>
+    <text x="200" y="190" text-anchor="middle">Colleagues</text>
+    <text x="200" y="297" text-anchor="middle" class="wm-rings__you">You</text>
+  </svg>
+  <div>
+    <p class="kicker">{{ home.levels.kicker }}</p>
+    <h2 id="levels-title">{{ home.levels.title }}</h2>
+    <p>{{ home.levels.text }}</p>
+    <ul class="wm-levels__list">
+      {%- for level in home.levels.items %}
+      <li><a href="{{ level.url }}"><strong>{{ level.name }}</strong><span>{{ level.text }}</span></a></li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="wm-themes container" aria-labelledby="themes-title">
+  <div class="wm-section-head">
+    <p class="kicker">{{ home.themes.kicker }}</p>
+    <h2 id="themes-title">{{ home.themes.title }}</h2>
+    <p class="muted">{{ home.themes.text }}</p>
+  </div>
+  <div class="theme-grid wm-theme-grid">
+    {%- for item in collections.themes %}
+    {% include "components/theme-card.njk" %}
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="wm-highlights container" aria-labelledby="hl-title">
+  <h2 id="hl-title" class="visually-hidden">Key figures</h2>
+  <ul class="wm-highlights__list">
+    {%- for h in home.highlights %}
+    <li>
+      <span class="wm-highlights__value">{{ h.value }}</span>
+      <a href="{{ h.url }}">{{ h.label }}</a>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
+
+<section class="wm-duo container" aria-label="Regions, report and newsletter">
+  <article class="wm-card">
+    <p class="kicker">{{ home.map.kicker }}</p>
+    <h2>{{ home.map.title }}</h2>
+    <p>{{ home.map.text }}</p>
+    <div class="wm-map-ph" aria-hidden="true"><span>Interactive map – coming soon</span></div>
+    <a class="button button--ghost" href="{{ home.map.url }}">{{ home.map.cta }}</a>
+  </article>
+  <div class="wm-duo__stack">
+    <article class="wm-card wm-card--tint">
+      <p class="kicker">{{ home.report.kicker }}</p>
+      <h2>{{ home.report.title }}</h2>
+      <p>{{ home.report.text }}</p>
+      <a class="button button--primary" href="/report/">{{ home.report.cta }}</a>
+    </article>
+    <article class="wm-card">
+      <p class="kicker">{{ home.newsletter.kicker }}</p>
+      <h2>{{ home.newsletter.title }}</h2>
+      <p>{{ home.newsletter.text }}</p>
+      <a class="button button--ghost" href="/newsletter/">{{ home.newsletter.cta }}</a>
+    </article>
+  </div>
+</section>

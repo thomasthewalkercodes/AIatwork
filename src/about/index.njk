@@ -1,0 +1,49 @@
+---
+layout: layouts/page.njk
+title: About the study
+kicker: About us
+lead: AI & People at Work is an annual survey on how artificial intelligence is changing the working lives of employees in Switzerland.
+description: Mission, story and team behind the AI & People at Work study at the University of Zurich.
+---
+
+<section class="section" aria-labelledby="mission-heading">
+  <h2 id="mission-heading">Our mission</h2>
+  {% todo "Text" %}
+2–3 sentences: why this study exists and what we want to achieve (e.g. give employees a voice in the debate about AI at work; provide reliable data for organisations, policy makers and the public).
+  {% endtodo %}
+</section>
+
+<section class="section" aria-labelledby="story-heading">
+  <h2 id="story-heading">Our story</h2>
+  {% todo "Text" %}
+How the project started, who is involved, and what's planned for the coming waves. Optional: a simple timeline (first wave 2026 → annual repetition).
+  {% endtodo %}
+</section>
+
+<section class="section" aria-labelledby="team-heading">
+  <h2 id="team-heading">The team</h2>
+  <p>The study is led by the <a href="{{ site.organisation.url }}">{{ site.organisation.unit }}</a> at the {{ site.organisation.name }} in cooperation with partner research groups and the <a href="{{ site.hub.url }}">{{ site.hub.name }}</a>.</p>
+  <ul class="team-grid">
+    {%- for person in team %}
+    <li class="team-card">
+      {%- if person.photo %}
+      <img class="team-card__photo" src="/assets/img/team/{{ person.photo }}" alt="{{ person.alt }}" width="160" height="160" loading="lazy">
+      {%- else %}
+      <span class="team-card__photo team-card__photo--initials" aria-hidden="true">{{ person.initials }}</span>
+      {%- endif %}
+      <h3 class="team-card__name">{{ person.name }}</h3>
+      <p class="team-card__affiliation">{{ person.affiliation }}</p>
+    </li>
+    {%- endfor %}
+  </ul>
+  {% todo "Team" %}
+Add photos (square, at least 320 × 320 px) to `src/assets/img/team/` and fill in names, roles and photo descriptions in `src/_data/team.yaml`.
+  {% endtodo %}
+</section>
+
+<section class="section" aria-labelledby="partners-heading">
+  <h2 id="partners-heading">Partners</h2>
+  {% todo "Partners" %}
+Project partners and funders with logos and links (still to be confirmed).
+  {% endtodo %}
+</section>

@@ -1,0 +1,86 @@
+# ---------------------------------------------------------------------------
+# Homepage texts. All three design options read from this file, so the
+# comparison is about style only – the words are the same.
+# ---------------------------------------------------------------------------
+
+hero:
+  kicker: "Swiss study · 1st wave · 2026"
+  title: "How is AI changing work in Switzerland?"
+  lead: >-
+    AI & People at Work is an annual survey by the University of Zurich. We ask
+    employees across Switzerland how generative AI is changing their work: for
+    themselves, between colleagues, in their organisation and in society.
+  primary:
+    label: "Take the self-check"
+    url: "/self-check/"
+  secondary:
+    label: "Explore the findings"
+    url: "/findings/"
+
+# Placeholder key figures – TODO: fill in from the report (keep to 3)
+highlights:
+  - value: "XX %"
+    label: "of employees use AI at work"
+    url: "/findings/ai-use/"
+  - value: "XX %"
+    label: "say they openly share when they have used AI"
+    url: "/findings/colleagues/"
+  - value: "XX %"
+    label: "want workers to have more say in how AI is introduced"
+    url: "/findings/organisation/"
+
+selfcheck:
+  kicker: "Self-check"
+  title: "How do you compare?"
+  text: >-
+    Answer a few quick questions and get your personal mini-report: how your
+    experience with AI compares with employees across Switzerland. Ready to
+    share, nothing stored.
+  cta: "Start the self-check"
+  sampleQuestion: "How often do you use AI at work?"
+
+levels:
+  kicker: "Four levels"
+  title: "What AI means for people at work"
+  text: >-
+    The study looks beyond who uses AI and how. It asks what AI means for people
+    on four levels.
+  items:
+    - name: "You"
+      text: "Skills, workload and how work feels"
+      url: "/findings/personal/"
+    - name: "Your colleagues"
+      text: "Openness, trust and unwritten rules"
+      url: "/findings/colleagues/"
+    - name: "Your organisation"
+      text: "Policies, training and having a say"
+      url: "/findings/organisation/"
+    - name: "Society"
+      text: "Hopes, worries and verdicts"
+      url: "/findings/society/"
+
+themes:
+  kicker: "Findings"
+  title: "Explore the themes"
+  text: "Each theme summarises one chapter of the report. New themes follow with every wave."
+
+map:
+  kicker: "Across Switzerland"
+  title: "Is there an AI Röstigraben?"
+  text: >-
+    Explore how employees in the German-, French- and Italian-speaking parts of
+    Switzerland see AI at work.
+  cta: "Explore the regions"
+  url: "/findings/differences/#the-ai-roestigraben"
+
+report:
+  kicker: "Report 2026"
+  title: "Read the full report"
+  text: "All results, figures and methods of the first wave, as a PDF."
+  cta: "Download the report"
+
+newsletter:
+  kicker: "Stay up to date"
+  title: "Be the first to see the next wave"
+  text: "We'll send you a short email when new results are published. No spam, no tracking."
+  cta: "Sign up for updates"

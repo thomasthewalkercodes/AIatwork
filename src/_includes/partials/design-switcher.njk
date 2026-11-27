@@ -1,0 +1,10 @@
+{#- Review-only bar shown on the design option pages. Delete with src/design-options/ once a design is chosen. -#}
+<div class="design-switcher" role="region" aria-label="Design preview">
+  <p><strong>Design preview</strong> · {{ designPreview }}</p>
+  <ul>
+    <li><a href="/design-options/a-editorial/" {% if page.url == "/design-options/a-editorial/" %}aria-current="page"{% endif %}>A · Editorial</a></li>
+    <li><a href="/design-options/b-swiss/" {% if page.url == "/design-options/b-swiss/" %}aria-current="page"{% endif %}>B · Swiss grid</a></li>
+    <li><a href="/design-options/c-warm/" {% if page.url == "/design-options/c-warm/" %}aria-current="page"{% endif %}>C · Warm</a></li>
+    <li><a href="/design-options/">Compare all</a></li>
+  </ul>
+</div>

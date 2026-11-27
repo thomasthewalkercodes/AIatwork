@@ -1,0 +1,22 @@
+{#- Interactive language-region map – placeholder until the real SVG map is built. -#}
+<figure class="map-placeholder" aria-labelledby="map-caption">
+  <div class="map-placeholder__canvas">
+    <p class="map-placeholder__label">Interactive map of Switzerland's language regions</p>
+    <ul class="map-placeholder__regions" aria-label="Regions that will be selectable">
+      <li>German-speaking</li>
+      <li>French-speaking</li>
+      <li>Italian-speaking</li>
+      <li>Romansh-speaking</li>
+    </ul>
+  </div>
+  <figcaption id="map-caption">
+    {% todo "Interactive map" %}
+- SVG map of Switzerland with the language regions as separate shapes (open data, e.g. from the Federal Statistical Office or swisstopo).
+- Hover **or keyboard focus** on a region highlights it and shows that region's key results in a side panel.
+- Every region also reachable by Tab key; results announced to screen readers (`aria-live`).
+- Below the map: the same numbers as a simple table, for people who can't use the map.
+- Italian-speaking region marked as "indicative only" (small sample); Romansh is counted with German-speaking in the report.
+- Data source: report figures 12–13.
+    {% endtodo %}
+  </figcaption>
+</figure>

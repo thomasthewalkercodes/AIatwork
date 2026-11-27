@@ -1,0 +1,51 @@
+---
+layout: layouts/base.njk
+---
+{#-
+  Layout for one findings theme (one chapter of the report).
+  Front matter (set in each file in src/findings/themes/):
+    title, order, level, summary, reportChapter, status (published | upcoming)
+-#}
+{%- set toc = content | toc -%}
+{%- set nav = collections.themes | neighbours(page.url) -%}
+
+<header class="page-header page-header--theme">
+  <div class="container">
+    <p class="kicker">
+      <a href="/findings/">Findings</a>
+      <span aria-hidden="true"> / </span>
+      Theme {{ order | pad }}{% if level %} · {{ level }}{% endif %}
+    </p>
+    <h1>{{ title }}</h1>
+    <p class="lead">{{ summary }}</p>
+  </div>
+</header>
+
+<div class="container theme-layout">
+  {%- if toc.length %}
+  <nav class="toc" aria-labelledby="toc-heading">
+    <h2 id="toc-heading" class="toc__heading">On this page</h2>
+    <ol>
+      {%- for item in toc %}
+      <li><a href="#{{ item.id }}">{{ item.title }}</a></li>
+      {%- endfor %}
+    </ol>
+  </nav>
+  {%- endif %}
+
+  <article class="prose theme-content">
+    {{ content | safe }}
+
+    <p class="theme-source">
+      Source: AI &amp; People at Work, Report 2026{% if reportChapter %}, chapter {{ reportChapter }}{% endif %}.
+      <a href="/report/">Download the full report</a>.
+    </p>
+  </article>
+</div>
+
+<nav class="container theme-pager" aria-label="More themes">
+  {% if nav.prev %}<a class="theme-pager__link theme-pager__link--prev" href="{{ nav.prev.url }}"><span>Previous theme</span>{{ nav.prev.data.title }}</a>{% else %}<span></span>{% endif %}
+  {% if nav.next %}<a class="theme-pager__link theme-pager__link--next" href="{{ nav.next.url }}"><span>Next theme</span>{{ nav.next.data.title }}</a>{% endif %}
+</nav>
+
+{% include "components/selfcheck-cta.njk" %}
